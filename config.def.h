@@ -89,20 +89,20 @@ static const char *betterlockscreen[] = {"betterlockscreen", "-l", NULL};
 static const char *suspend[] = {"systemctl", "suspend", NULL};
 
 
-#include </home/skyblueborb/Desktop/dwm/shiftview.c>
+#include </home/skyblueborb/Desktop/skyblue-dwm/shiftview.c>
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_space,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_p,      togglebar,      {0} },
-	// { MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
-	// { MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
+	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
+	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
 	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
 	{ MODKEY,                       XK_Return, zoom,           {0} },
-	// { MODKEY,                       XK_Tab,    view,           {0} },
+	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY,             			XK_q,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
@@ -124,8 +124,8 @@ static Key keys[] = {
 	{ ControlMask|ShiftMask,		XK_x,	   spawn,		   {.v = cmusplaypause } },
 	{ ControlMask|ShiftMask,		XK_b,	   spawn,		   {.v = cmusnext } },
 	{ ControlMask|ShiftMask,		XK_n,	   spawn,		   {.v = cmusprevious } },
-	{ MODKEY,						XK_semicolon,	   spawn,  {.v = suspend } },
-	{ MODKEY,						XK_l,	   spawn,		   {.v = betterlockscreen } },
+	{ MODKEY,						XK_apostrophe,	   spawn,  {.v = suspend } },
+	{ MODKEY,						XK_semicolon,	   spawn,		   {.v = betterlockscreen } },
 	{ ControlMask|ShiftMask,                   XK_space,  togglealwaysontop, {0} },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)

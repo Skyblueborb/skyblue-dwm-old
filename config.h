@@ -1,17 +1,22 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 1;        /* border pixel of windows */
-static const unsigned int gappx     = 2;        /* gaps between windows */
+static const unsigned int borderpx  = 2;        /* border pixel of windows */
+static const unsigned int gappx     = 3;        /* gaps between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "monospace:size=10" };
-static const char dmenufont[]       = "monospace:size=10";
+static const char *fonts[]          = { "monospace:size=12", "fontawesome:size=12" };
+static const char dmenufont[]       = "monospace:size=11";
+// background color
 static const char col_gray1[]       = "#222222";
+// inactive window border color
 static const char col_gray2[]       = "#444444";
+// font color
 static const char col_gray3[]       = "#bbbbbb";
+// current tag and current window font color
 static const char col_gray4[]       = "#eeeeee";
+// tob bar second color and active window border color
 static const char col_cyan[]        = "#5f6985";
 static const unsigned int baralpha = 0xd0;
 static const unsigned int borderalpha = OPAQUE;
@@ -32,7 +37,7 @@ static const unsigned int alphas[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6" };
+static const char *tags[] = { "", "", "", "4", "5", "6" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -45,7 +50,7 @@ static const Rule rules[] = {
 	{ "Terminator",  "terminator",       NULL,       1 << 9,       		0,           -1 },
 	{ "kitty",  "kitty",       NULL,       1 << 9,       		0,           -1 },
 	{ "Minecraft 1.8.9",  "Minecraft 1.8.9",       NULL,       5,       		0,           -1 },
-
+	{"SevTech Ages", "SevTech Ages", "SevTech Ages", 5, -1}
 };
 
 /* layout(s) */
@@ -84,20 +89,20 @@ static const char *betterlockscreen[] = {"betterlockscreen", "-l", NULL};
 static const char *suspend[] = {"systemctl", "suspend", NULL};
 
 
-#include </home/skyblueborb/Desktop/dwm/shiftview.c>
+#include </home/skyblueborb/Desktop/skyblue-dwm/shiftview.c>
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_space,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_p,      togglebar,      {0} },
-	// { MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
-	// { MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
+	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
+	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
 	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
 	{ MODKEY,                       XK_Return, zoom,           {0} },
-	// { MODKEY,                       XK_Tab,    view,           {0} },
+	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY,             			XK_q,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
@@ -119,8 +124,8 @@ static Key keys[] = {
 	{ ControlMask|ShiftMask,		XK_x,	   spawn,		   {.v = cmusplaypause } },
 	{ ControlMask|ShiftMask,		XK_b,	   spawn,		   {.v = cmusnext } },
 	{ ControlMask|ShiftMask,		XK_n,	   spawn,		   {.v = cmusprevious } },
-	{ MODKEY,						XK_semicolon,	   spawn,  {.v = suspend } },
-	{ MODKEY,						XK_l,	   spawn,		   {.v = betterlockscreen } },
+	{ MODKEY,						XK_apostrophe,	   spawn,  {.v = suspend } },
+	{ MODKEY,						XK_semicolon,	   spawn,		   {.v = betterlockscreen } },
 	{ ControlMask|ShiftMask,                   XK_space,  togglealwaysontop, {0} },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
