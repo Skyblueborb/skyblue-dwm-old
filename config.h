@@ -45,7 +45,7 @@ static const Rule rules[] = {
 	{ "Terminator",  "terminator",       NULL,       1 << 9,       		0,           -1 },
 	{ "kitty",  "kitty",       NULL,       1 << 9,       		0,           -1 },
 	{ "Minecraft 1.8.9",  "Minecraft 1.8.9",       NULL,       5,       		0,           -1 },
-	{"SevTech Ages", "SevTech Ages", "SevTech Ages", 5, -1}
+
 };
 
 /* layout(s) */
