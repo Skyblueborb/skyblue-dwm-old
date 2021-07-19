@@ -45,12 +45,13 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Chromium", "chromium",       NULL,       1,            0,           -1 },
-	{ "discord",  "discord",       NULL,       2,       		0,           -1 },
-	{ "Terminator",  "terminator",       NULL,       1 << 9,       		0,           -1 },
-	{ "kitty",  "kitty",       NULL,       1 << 9,       		0,           -1 },
-	{ "Minecraft 1.8.9",  "Minecraft 1.8.9",       NULL,       5,       		0,           -1 },
-	{"SevTech Ages", "SevTech Ages", "SevTech Ages", 5, -1}
+	{ "Chromium", "chromium", NULL, 1, 0, -1 },
+	{ "discord",  "discord", NULL, 2, 0, -1 },
+	{ "Terminator",  "terminator", NULL, 1 << 9, 0, -1 },
+	{ "kitty",  "kitty", NULL, 1 << 9, 0, -1 },
+	{ "Minecraft 1.8.9",  "Minecraft 1.8.9", NULL,  5, 0, -1 },
+	{ "SevTech Ages", "SevTech Ages", "SevTech Ages", 5, 0, -1},
+	{ "kitty", "kitty", "cmus v2.9.1", 4, 0, -1}
 };
 
 /* layout(s) */
