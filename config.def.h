@@ -11,13 +11,13 @@ static const char dmenufont[]       = "monospace:size=10";
 // background color
 static const char col_gray1[]       = "#222222";
 // inactive window border color
-static const char col_gray2[]       = "#444444";
+static const char col_gray2[]       = "#f2a779";
 // font color
 static const char col_gray3[]       = "#bbbbbb";
 // current tag and current window font color
 static const char col_gray4[]       = "#eeeeee";
 // tob bar second color and active window border color
-static const char col_cyan[]        = "#5f6985";
+static const char col_cyan[]        = "#f27324";
 static const unsigned int baralpha = 0xd0;
 static const unsigned int borderalpha = OPAQUE;
 static const char *colors[][3]      = {
