@@ -80,7 +80,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-hp", "chromium,discord,firefox,kitty", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "kitty", NULL };
 static const char *flameshot[] = {"flameshot", "gui", NULL};
 static const char *cmusplaypause[] = {"playerctl", "--player=cmus", "play-pause", NULL};
@@ -90,7 +90,7 @@ static const char *betterlockscreen[] = {"betterlockscreen", "-l", NULL};
 static const char *suspend[] = {"systemctl", "suspend", NULL};
 
 
-#include </home/skyblueborb/Desktop/skyblue-dwm/shiftview.c>
+#include </root/skyblue-dwm/shiftview.c>
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_space,      spawn,          {.v = dmenucmd } },
