@@ -1,4 +1,4 @@
-/* See LICENSE file for copyright and license details. */
+/* See LICENSE file for copyright an0od license details. */
 
 /* appearance */
 static const unsigned int borderpx  = 2;        /* border pixel of windows */
@@ -6,6 +6,7 @@ static const unsigned int gappx     = 3;        /* gaps between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
+static const Bool viewontag         = True;     /* Switch view on tag switch */
 static const char *fonts[]          = { "monospace:size=10", "fontawesome:size=11" };
 static const char dmenufont[]       = "monospace:size=10";
 // background color
@@ -36,6 +37,12 @@ static const unsigned int alphas[][3]      = {
 	[SchemeSel]  = { OPAQUE, baralpha, borderalpha },
 };
 
+static const char *const autostart[] = {
+	"kitty", "--title", "cmus", "cmus", NULL,
+	"kitty", "--title", "terminal", NULL,
+	NULL /* terminate */
+};
+
 /* tagging */
 static const char *tags[] = { "", "", "", "", "", "" };
 
@@ -48,16 +55,18 @@ static const Rule rules[] = {
 	{ "Chromium", "chromium", NULL, 1, 0, -1 },
 	{ "discord",  "discord", NULL, 2, 0, -1 },
 	{ "Terminator",  "terminator", NULL, 1 << 9, 0, -1 },
-	{ "kitty",  "kitty", NULL, 1 << 9, 0, -1 },
-	{ "Minecraft 1.8.9",  "Minecraft 1.8.9", NULL,  5, 0, -1 },
+	{ NULL, NULL, "terminal", 1 << 2, 0, -1},
+	{ "kitty",  "kitty", NULL, 1 << 9, 0, -1 },	
+	{ NULL, NULL, "cmus", 1 << 3, 0, -1},
 	{ "SevTech Ages", "SevTech Ages", "SevTech Ages", 5, 0, -1},
-	{ "kitty", "kitty", "cmus v2.9.1", 4, 0, -1}
+	{ "Minecraft 1.8.9",  "Minecraft 1.8.9", NULL,  5, 0, -1 },
 };
 
 /* layout(s) */
 static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
+static const int lockfullscreen = 0; /* 1 will force focus on the fullscreen window */
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
