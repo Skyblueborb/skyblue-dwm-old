@@ -58,8 +58,13 @@ static const Rule rules[] = {
 	{ NULL, NULL, "terminal", 1 << 2, 0, -1},
 	{ "kitty",  "kitty", NULL, 1 << 9, 0, -1 },	
 	{ NULL, NULL, "cmus", 1 << 3, 0, -1},
-	{ "SevTech Ages", "SevTech Ages", "SevTech Ages", 5, 0, -1},
-	{ "Minecraft 1.8.9",  "Minecraft 1.8.9", NULL,  5, 0, -1 },
+	{ "SevTech Ages", "SevTech Ages", "SevTech Ages", 1 << 4, 0, -1},
+	{ "Minecraft 1.8.9",  "Minecraft 1.8.9", NULL, 1 << 4, 0, -1 },
+
+	{ "MultiMC5",  "multimc", NULL, 1 << 4, 0, -1 },
+	{ "Steam",  "Steam", NULL, 1 << 4, 0, -1 },
+	{ "steam_app_960090",  "steam_app_960090", NULL, 1 << 5, 0, -1 },
+	{ "steam_app_252950",  "steam_app_252950", NULL, 1 << 5, 0, -1 },
 };
 
 /* layout(s) */
@@ -89,7 +94,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-hp", "chromium,discord,firefox,kitty", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-hp", "chromium,discord,firefox,kitty,vscodium,nomacs,steam,multimc,flameshot", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "kitty", NULL };
 static const char *flameshot[] = {"flameshot", "gui", NULL};
 static const char *cmusplaypause[] = {"playerctl", "--player=cmus", "play-pause", NULL};
@@ -97,12 +102,13 @@ static const char *cmusnext[] = {"playerctl", "--player=cmus", "next", NULL};
 static const char *cmusprevious[] = {"playerctl", "--player=cmus", "previous", NULL};
 static const char *betterlockscreen[] = {"betterlockscreen", "-l", NULL};
 static const char *suspend[] = {"systemctl", "suspend", NULL};
-
+static const char *volup [] = {"amixer", "-D", "pulse", "sset", "Master", "5%+", NULL};
+static const char *voldown[] = {"amixer", "-D", "pulse", "sset", "Master", "5%-", NULL};
 
 #include </root/skyblue-dwm/shiftview.c>
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ MODKEY,                       XK_space,      spawn,          {.v = dmenucmd } },
+	{ MODKEY,                       XK_space,  spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_p,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
@@ -113,30 +119,32 @@ static Key keys[] = {
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
 	{ MODKEY,                       XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
-	{ MODKEY,             			XK_q,      killclient,     {0} },
+	{ MODKEY,             		XK_q,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
-	{ MODKEY2,                       XK_space,  setlayout,      {0} },
-	{ MODKEY2|ShiftMask,             XK_space,  togglefloating, {0} },
+	{ MODKEY2,                      XK_space,  setlayout,      {0} },
+	{ MODKEY2|ShiftMask,            XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
 	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
-	{ MODKEY,                       XK_minus,  setgaps,        {.i = -1 } },
-	{ MODKEY,                       XK_equal,  setgaps,        {.i = +1 } },
-	{ MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = 0  } },
+	//{ MODKEY,                       XK_minus,  setgaps,        {.i = -1 } },
+	//{ MODKEY,                       XK_equal,  setgaps,        {.i = +1 } },
+	//{ MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = 0  } },
 	{ MODKEY2|ShiftMask,            XK_Tab,    shiftview,      {.i = -1 } },
-	{ MODKEY2,             			XK_Tab,	   shiftview,      {.i = +1 } },
-	{ NULL,						    XK_Print,  spawn,	       {.v = flameshot } },
-	{ ControlMask|ShiftMask,		XK_x,	   spawn,		   {.v = cmusplaypause } },
-	{ ControlMask|ShiftMask,		XK_b,	   spawn,		   {.v = cmusnext } },
-	{ ControlMask|ShiftMask,		XK_n,	   spawn,		   {.v = cmusprevious } },
-	{ MODKEY,						XK_apostrophe,	   spawn,  {.v = suspend } },
-	{ MODKEY,						XK_semicolon,	   spawn,		   {.v = betterlockscreen } },
-	{ ControlMask|ShiftMask,                   XK_space,  togglealwaysontop, {0} },
+	{ MODKEY2,             		XK_Tab,	   shiftview,      {.i = +1 } },
+	{ NULL,				XK_Print,  spawn,	   {.v = flameshot } },
+	{ ControlMask|ShiftMask,	XK_x,	   spawn,		{.v = cmusplaypause } },
+	{ ControlMask|ShiftMask,	XK_b,	   spawn,		{.v = cmusnext } },
+	{ ControlMask|ShiftMask,	XK_n,	   spawn,		{.v = cmusprevious } },
+	{ MODKEY,			XK_apostrophe,	   spawn,	{.v = suspend } },
+	{ MODKEY,			XK_semicolon,	   spawn,	{.v = betterlockscreen } },
+	{ ControlMask|ShiftMask,        XK_space,  togglealwaysontop, {0} },
+	{ MODKEY,			XK_equal,   spawn,		{.v = volup } },
+	{ MODKEY,			XK_minus,   spawn,		{.v = voldown } },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
