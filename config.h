@@ -40,6 +40,8 @@ static const unsigned int alphas[][3]      = {
 static const char *const autostart[] = {
 	"kitty", "--title", "cmus", "cmus", NULL,
 	"kitty", "--title", "terminal", NULL,
+	"pulseaudio", NULL,
+	"discord", NULL,
 	NULL /* terminate */
 };
 
@@ -58,12 +60,20 @@ static const Rule rules[] = {
 	{ NULL, NULL, "terminal", 1 << 2, 0, -1},
 	{ "kitty",  "kitty", NULL, 1 << 9, 0, -1 },	
 	{ NULL, NULL, "cmus", 1 << 3, 0, -1},
-	{ "SevTech Ages", "SevTech Ages", "SevTech Ages", 1 << 4, 0, -1},
-	{ "Minecraft 1.8.9",  "Minecraft 1.8.9", NULL, 1 << 4, 0, -1 },
+	{ "SevTech Ages", "SevTech Ages", "SevTech Ages", 1 << 5, 0, -1},
+	{ "Minecraft 1.8.9",  "Minecraft 1.8.9", NULL, 1 << 5, 0, -1 },
 
+	{ "Minecraft* 1.17.1",  "Minecraft* 1.17.1", NULL, 1 << 5, 0, -1 },
+	
+	{ "civilizationvi.exe",  "civilizationvi.exe", NULL, 1 << 5, 0, -1 },
+	{ "doomx64vk.exe",  "doomx64vk.exe", NULL, 1 << 5, 0, -1 },
+	{ "borderlands3.exe",  "borderlands3.exe", NULL, 1 << 5, 0, -1 },
+	{ "civilizationvi.exe",  "civilizationvi.exe", NULL, 1 << 5, 0, -1 },
+	{ "Lutris",  "lutris", NULL, 1 << 4, 0, -1 },
 	{ "MultiMC5",  "multimc", NULL, 1 << 4, 0, -1 },
-	{ "Steam",  "Steam", NULL, 1 << 4, 0, -1 },
 	{ "steam_app_960090",  "steam_app_960090", NULL, 1 << 5, 0, -1 },
+	{ "Steam",  "Steam", NULL, 1 << 4, 0, -1 },
+	{ "Kodi",  "Kodi", NULL, 1 << 4, 0, -1 },
 	{ "steam_app_252950",  "steam_app_252950", NULL, 1 << 5, 0, -1 },
 };
 
@@ -112,19 +122,22 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_p,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
+	{ MODKEY,                       XK_Tab,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
+	{ MODKEY,                       XK_Tab,      focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
 	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
 	{ MODKEY,                       XK_Return, zoom,           {0} },
-	{ MODKEY,                       XK_Tab,    view,           {0} },
+	//{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY,             		XK_q,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
 	{ MODKEY2,                      XK_space,  setlayout,      {0} },
 	{ MODKEY2|ShiftMask,            XK_space,  togglefloating, {0} },
+	{ MODKEY|ShiftMask,             XK_f,      togglefullscr,  {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
 	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
