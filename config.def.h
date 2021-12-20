@@ -4,6 +4,7 @@
 static const unsigned int borderpx  = 2;        /* border pixel of windows */
 static const unsigned int gappx     = 3;        /* gaps between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
+static const unsigned int minwsz    = 20;       /* Minimal heigt of a client for smfact */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const Bool viewontag         = True;     /* Switch view on tag switch */
@@ -38,10 +39,10 @@ static const unsigned int alphas[][3]      = {
 };
 
 static const char *const autostart[] = {
+	"wal", "-R", NULL,
 	"kitty", "--title", "cmus", "cmus", NULL,
 	"kitty", "--title", "terminal", NULL,
 	"pulseaudio", NULL,
-	"discord", NULL,
 	NULL /* terminate */
 };
 
@@ -79,6 +80,7 @@ static const Rule rules[] = {
 
 /* layout(s) */
 static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
+static const float smfact     = 0.00; /* factor of tiled clients [0.00..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
 static const int lockfullscreen = 0; /* 1 will force focus on the fullscreen window */
@@ -112,8 +114,10 @@ static const char *cmusnext[] = {"playerctl", "--player=cmus", "next", NULL};
 static const char *cmusprevious[] = {"playerctl", "--player=cmus", "previous", NULL};
 static const char *betterlockscreen[] = {"betterlockscreen", "-l", NULL};
 static const char *suspend[] = {"systemctl", "suspend", NULL};
-static const char *volup [] = {"amixer", "-D", "pulse", "sset", "Master", "5%+", NULL};
-static const char *voldown[] = {"amixer", "-D", "pulse", "sset", "Master", "5%-", NULL};
+static const char *volup [] = {"pactl", "set-sink-volume", "1", "+5%", NULL};
+static const char *voldown[] = {"pactl", "set-sink-volume", "1", "-5%", NULL};
+static const char *shutdown[] = {"prompt", "Do you want to shutdown?", "sudo shutdown -h now", NULL};
+
 
 #include </root/skyblue-dwm/shiftview.c>
 static Key keys[] = {
@@ -129,8 +133,11 @@ static Key keys[] = {
 	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
+	{ MODKEY|ShiftMask,             XK_h,      setsmfact,      {.f = +0.05} },
+	{ MODKEY|ShiftMask,             XK_l,      setsmfact,      {.f = -0.05} },
 	{ MODKEY,                       XK_Return, zoom,           {0} },
 	//{ MODKEY,                       XK_Tab,    view,           {0} },
+	{ MODKEY|ShiftMask,		XK_o,	   spawn,	{.v = shutdown} },
 	{ MODKEY,             		XK_q,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },

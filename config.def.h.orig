@@ -40,6 +40,8 @@ static const unsigned int alphas[][3]      = {
 static const char *const autostart[] = {
 	"kitty", "--title", "cmus", "cmus", NULL,
 	"kitty", "--title", "terminal", NULL,
+	"pulseaudio", NULL,
+	"discord", NULL,
 	NULL /* terminate */
 };
 
@@ -69,8 +71,9 @@ static const Rule rules[] = {
 	{ "civilizationvi.exe",  "civilizationvi.exe", NULL, 1 << 5, 0, -1 },
 	{ "Lutris",  "lutris", NULL, 1 << 4, 0, -1 },
 	{ "MultiMC5",  "multimc", NULL, 1 << 4, 0, -1 },
-	{ "Steam",  "Steam", NULL, 1 << 4, 0, -1 },
 	{ "steam_app_960090",  "steam_app_960090", NULL, 1 << 5, 0, -1 },
+	{ "Steam",  "Steam", NULL, 1 << 4, 0, -1 },
+	{ "Kodi",  "Kodi", NULL, 1 << 4, 0, -1 },
 	{ "steam_app_252950",  "steam_app_252950", NULL, 1 << 5, 0, -1 },
 };
 
@@ -109,8 +112,10 @@ static const char *cmusnext[] = {"playerctl", "--player=cmus", "next", NULL};
 static const char *cmusprevious[] = {"playerctl", "--player=cmus", "previous", NULL};
 static const char *betterlockscreen[] = {"betterlockscreen", "-l", NULL};
 static const char *suspend[] = {"systemctl", "suspend", NULL};
-static const char *volup [] = {"amixer", "-D", "pulse", "sset", "Master", "5%+", NULL};
-static const char *voldown[] = {"amixer", "-D", "pulse", "sset", "Master", "5%-", NULL};
+static const char *volup [] = {"pactl", "set-sink-volume", "1", "+5%", NULL};
+static const char *voldown[] = {"pactl", "set-sink-volume", "1", "-5%", NULL};
+static const char *shutdown[] = {"prompt", "Do you want to shutdown?", "sudo shutdown -h now", NULL};
+
 
 #include </root/skyblue-dwm/shiftview.c>
 static Key keys[] = {
@@ -119,19 +124,23 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_p,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
+	{ MODKEY,                       XK_Tab,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
+	{ MODKEY,                       XK_Tab,      focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
 	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
 	{ MODKEY,                       XK_Return, zoom,           {0} },
-	{ MODKEY,                       XK_Tab,    view,           {0} },
+	//{ MODKEY,                       XK_Tab,    view,           {0} },
+	{ MODKEY|ShiftMask,		XK_o,	   spawn,	{.v = shutdown} },
 	{ MODKEY,             		XK_q,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
 	{ MODKEY2,                      XK_space,  setlayout,      {0} },
 	{ MODKEY2|ShiftMask,            XK_space,  togglefloating, {0} },
+	{ MODKEY|ShiftMask,             XK_f,      togglefullscr,  {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
 	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
