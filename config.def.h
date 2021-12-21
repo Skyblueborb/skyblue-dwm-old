@@ -10,16 +10,18 @@ static const int topbar             = 1;        /* 0 means bottom bar */
 static const Bool viewontag         = True;     /* Switch view on tag switch */
 static const char *fonts[]          = { "monospace:size=10", "fontawesome:size=11" };
 static const char dmenufont[]       = "monospace:size=10";
+
 // background color
-static const char col_gray1[]       = "#222222";
+static const char col_gray1[]       = "#0A050E";
 // inactive window border color
-static const char col_gray2[]       = "#f2a779";
+static const char col_gray2[]       = "#668c9a";
 // font color
-static const char col_gray3[]       = "#bbbbbb";
+static const char col_gray3[]       = "#92c9dd";
 // current tag and current window font color
-static const char col_gray4[]       = "#eeeeee";
+static const char col_gray4[]       = "#92c9dd";
 // tob bar second color and active window border color
-static const char col_cyan[]        = "#f27324";
+static const char col_cyan[]        = "#0759A4";
+
 static const unsigned int baralpha = 0xd0;
 static const unsigned int borderalpha = OPAQUE;
 static const char *colors[][3]      = {
