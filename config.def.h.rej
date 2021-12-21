@@ -1,18 +1,11 @@
---- config.def.h	2013-04-06 21:01:27.750829760 +0200
-+++ config.def.h	2013-04-06 21:02:19.557495556 +0200
-@@ -10,6 +10,7 @@ static const char selbgcolor[]      = "#
- static const char selfgcolor[]      = "#eeeeee";
- static const unsigned int borderpx  = 1;        /* border pixel of windows */
- static const unsigned int snap      = 32;       /* snap pixel */
-+static const unsigned int minwsz    = 20;       /* Minimal heigt of a client for smfact */
- static const Bool showbar           = True;     /* False means no bar */
- static const Bool topbar            = True;     /* False means bottom bar */
- 
-@@ -24,6 +25,7 @@ static const Rule rules[] = {
- 
- /* layout(s) */
- static const float mfact      = 0.55; /* factor of master area size [0.05..0.95] */
-+static const float smfact     = 0.00; /* factor of tiled clients [0.00..0.95] */
- static const int nmaster      = 1;    /* number of clients in master area */
- static const Bool resizehints = True; /* True means respect size hints in tiled resizals */
- 
+--- config.def.h
++++ config.def.h
+@@ -76,6 +78,8 @@ static Key keys[] = {
+ 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
+ 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
+ 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
++	{ MODKEY,                       XK_u,      setlayout,      {.v = &layouts[3]} },
++	{ MODKEY,                       XK_o,      setlayout,      {.v = &layouts[4]} },
+ 	{ MODKEY,                       XK_space,  setlayout,      {0} },
+ 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
+ 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
