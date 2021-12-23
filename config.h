@@ -41,7 +41,8 @@ static const unsigned int alphas[][3]      = {
 };
 
 static const char *const autostart[] = {
-	"wal", "-R", NULL,
+	"wal", "-c", NULL,
+	"wal", "-q", "-i", "/home/skyblueborb/Pictures/tapety/current.png", NULL,
 	"kitty", "--title", "cmus", "cmus", NULL,
 	"kitty", "--title", "terminal", NULL,
 	"pulseaudio", NULL,
@@ -49,7 +50,8 @@ static const char *const autostart[] = {
 };
 
 /* tagging */
-static const char *tags[] = { "", "", "", "", "", "" };
+static const char *tags[] = { "", "", "", "", "", "" };
+
 
 static const Rule rules[] = {
 	/* xprop(1):
