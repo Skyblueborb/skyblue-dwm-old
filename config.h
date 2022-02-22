@@ -130,6 +130,7 @@ static const char *volup [] = {"pactl", "set-sink-volume", "1", "+5%", NULL};
 static const char *voldown[] = {"pactl", "set-sink-volume", "1", "-5%", NULL};
 static const char *shutdown[] = {"prompt", "Do you want to shutdown?", "shutdown -h now", NULL};
 static const char *lowpower[] = {"prompt", "Do you want to go into low power mode?", "zzz -S", NULL};
+static const char *sleepcmd[] = {"prompt", "Do you want to go sleep?", "zzz", NULL};
 static const char *hibernate[] = {"prompt", "Do you want to go hibernate?", "ZZZ", NULL};
 static const char *walreload[] = {"walreload", NULL};
 static const char *themereload[] = {"themereload", NULL};
@@ -156,7 +157,7 @@ static Key keys[] = {
 	//{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY|ShiftMask,		XK_o,	   spawn,	{.v = shutdown} },
 	{ MODKEY|ShiftMask,		XK_h,	   spawn,	{.v = hibernate} },
-	{ MODKEY|ShiftMask,		XK_s,	   spawn,	{.v = sleep} },
+	{ MODKEY|ShiftMask,		XK_s,	   spawn,	{.v = sleepcmd} },
 	{ MODKEY|ShiftMask,		XK_p,	   spawn,	{.v = lowpower} },
 	{ MODKEY,             		XK_q,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
