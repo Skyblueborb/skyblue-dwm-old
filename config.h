@@ -125,12 +125,12 @@ static const char *cmusplaypause[] = {"playerctl", "--player=cmus", "play-pause"
 static const char *cmusnext[] = {"playerctl", "--player=cmus", "next", NULL};
 static const char *cmusprevious[] = {"playerctl", "--player=cmus", "previous", NULL};
 static const char *betterlockscreen[] = {"betterlockscreen", "-l", NULL};
-static const char *suspend[] = {"systemctl", "suspend", NULL};
 static const char *volup [] = {"pactl", "set-sink-volume", "1", "+5%", NULL};
 static const char *voldown[] = {"pactl", "set-sink-volume", "1", "-5%", NULL};
 static const char *shutdown[] = {"prompt", "Do you want to shutdown?", "shutdown -h now", NULL};
 static const char *lowpower[] = {"prompt", "Do you want to go into low power mode?", "zzz -S", NULL};
 static const char *sleepcmd[] = {"prompt", "Do you want to go sleep?", "zzz", NULL};
+static const char *sleepcmdnoprompt[] = {"zzz", NULL};
 static const char *hibernate[] = {"prompt", "Do you want to go hibernate?", "ZZZ", NULL};
 static const char *walreload[] = {"walreload", NULL};
 static const char *themereload[] = {"themereload", NULL};
@@ -159,6 +159,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,		XK_h,	   spawn,	{.v = hibernate} },
 	{ MODKEY|ShiftMask,		XK_s,	   spawn,	{.v = sleepcmd} },
 	{ MODKEY|ShiftMask,		XK_p,	   spawn,	{.v = lowpower} },
+	{ MODKEY|ShiftMask,		XK_Pause,	   spawn,	{.v = sleepcmdnoprompt} },
 	{ MODKEY,             		XK_q,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
@@ -186,7 +187,6 @@ static Key keys[] = {
 	{ ControlMask|ShiftMask,	XK_x,	   spawn,		{.v = cmusplaypause } },
 	{ ControlMask|ShiftMask,	XK_b,	   spawn,		{.v = cmusnext } },
 	{ ControlMask|ShiftMask,	XK_n,	   spawn,		{.v = cmusprevious } },
-	{ MODKEY,			XK_apostrophe,	   spawn,	{.v = suspend } },
 	{ MODKEY,			XK_semicolon,	   spawn,	{.v = betterlockscreen } },
 	{ ControlMask|ShiftMask,        XK_space,  togglealwaysontop, {0} },
 	{ MODKEY,			XK_equal,   spawn,		{.v = volup } },
