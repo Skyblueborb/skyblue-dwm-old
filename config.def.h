@@ -8,8 +8,8 @@ static const unsigned int minwsz    = 20;       /* Minimal heigt of a client for
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const Bool viewontag         = True;     /* Switch view on tag switch */
-static const char *fonts[]          = { "monospace:size=10", "Font Awesome 6 Pro:style=Solid:pixelsize=11", "Font Awesome 5 Pro:style=Solid:pixelsize=11" };
-static const char dmenufont[]       = "monospace:size=10";
+static const char *fonts[]          = { "JetBrains Mono Medium:style=Medium,Regular:size=10", "Font Awesome 6 Pro:style=Solid:pixelsize=11", "Font Awesome 5 Pro:style=Solid:pixelsize=11" };
+static const char dmenufont[]       = "JetBrains Mono Medium:style=Medium,Regular:size=10";
 
 // background color
 static const char col_gray1[]       = "#0A050E";
@@ -59,7 +59,7 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Chromium", "chromium", NULL, 1, 0, -1 },
+	{ "Ungoogled-chromium", "ungoogled-chromium", NULL, 1, 0, -1 },
 	{ "discord",  "discord", NULL, 2, 0, -1 },
 	{ "Terminator",  "terminator", NULL, 1 << 9, 0, -1 },
 	{ NULL, "terminal", NULL, 1 << 2, 0, -1},
@@ -71,12 +71,16 @@ static const Rule rules[] = {
 
 	{ "Minecraft* 1.17.1",  "Minecraft* 1.17.1", NULL, 1 << 5, 0, -1 },
 	{ "Minecraft* 1.18.1",  "Minecraft* 1.18.1", NULL, 1 << 5, 0, -1 },
+	{ "overwatch.exe",  "overwatch.exe", NULL, 1 << 5, 0, -1 },
+	{ NULL,  NULL, "Wine System Tray", 1 << 4, 0, -1 },
+	
 	
 	{ "civilizationvi.exe",  "civilizationvi.exe", NULL, 1 << 5, 0, -1 },
 	{ "doomx64vk.exe",  "doomx64vk.exe", NULL, 1 << 5, 0, -1 },
 	{ "borderlands3.exe",  "borderlands3.exe", NULL, 1 << 5, 0, -1 },
 	{ "civilizationvi.exe",  "civilizationvi.exe", NULL, 1 << 5, 0, -1 },
 	{ "Lutris",  "lutris", NULL, 1 << 4, 0, -1 },
+	{ "battle.net.exe",  "battle.net.exe", NULL, 1 << 4, 0, -1 },
 	{ "MultiMC5",  "multimc", NULL, 1 << 4, 0, -1 },
 	{ "steam_app_960090",  "steam_app_960090", NULL, 1 << 5, 0, -1 },
 	{ "Steam",  "Steam", NULL, 1 << 4, 0, -1 },
@@ -114,7 +118,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-hp", "chromium,discord,firefox,kitty,vscodium,nomacs,steam,multimc,flameshot,netflix,mpv", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-hp", "ungoogled,chromium,discord,firefox,kitty,vscodium,nomacs,steam,multimc,flameshot,netflix,mpv,zzz", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "kitty", NULL };
 static const char *flameshot[] = {"flameshot", "gui", NULL};
 static const char *cmusplaypause[] = {"playerctl", "--player=cmus", "play-pause", NULL};
@@ -124,7 +128,7 @@ static const char *betterlockscreen[] = {"betterlockscreen", "-l", NULL};
 static const char *suspend[] = {"systemctl", "suspend", NULL};
 static const char *volup [] = {"pactl", "set-sink-volume", "1", "+5%", NULL};
 static const char *voldown[] = {"pactl", "set-sink-volume", "1", "-5%", NULL};
-static const char *shutdown[] = {"prompt", "Do you want to shutdown?", "doas -u skyblueborb shutdown -h now", NULL};
+static const char *shutdown[] = {"prompt", "Do you want to shutdown?", "sudo -u skyblueborb shutdown -h now", NULL};
 static const char *walreload[] = {"walreload", NULL};
 static const char *themereload[] = {"themereload", NULL};
 
