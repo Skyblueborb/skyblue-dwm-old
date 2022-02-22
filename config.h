@@ -159,7 +159,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,		XK_h,	   spawn,	{.v = hibernate} },
 	{ MODKEY|ShiftMask,		XK_s,	   spawn,	{.v = sleepcmd} },
 	{ MODKEY|ShiftMask,		XK_p,	   spawn,	{.v = lowpower} },
-	{ MODKEY|ShiftMask,		XK_Pause,	   spawn,	{.v = sleepcmdnoprompt} },
+	{ NULL,		XK_Pause,	   spawn,	{.v = sleepcmdnoprompt} },
 	{ MODKEY,             		XK_q,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
