@@ -42,7 +42,6 @@ static const unsigned int alphas[][3]      = {
 
 static const char *const autostart[] = {
 	"slstatus", NULL,
-	"pulseaudio", NULL,
 	"kitty", "--name", "terminal", NULL,
 	"kitty", "--name", "cmus", "cmus", NULL,
 	"themereload", NULL,
