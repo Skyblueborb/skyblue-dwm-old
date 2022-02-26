@@ -124,8 +124,8 @@ static const char *cmusplaypause[] = {"playerctl", "--player=cmus", "play-pause"
 static const char *cmusnext[] = {"playerctl", "--player=cmus", "next", NULL};
 static const char *cmusprevious[] = {"playerctl", "--player=cmus", "previous", NULL};
 static const char *betterlockscreen[] = {"betterlockscreen", "-l", NULL};
-static const char *volup [] = {"pactl", "set-sink-volume", "1", "+5%", NULL};
-static const char *voldown[] = {"pactl", "set-sink-volume", "1", "-5%", NULL};
+static const char *volup [] = {"pactl", "set-sink-volume", "43", "+5%", NULL};
+static const char *voldown[] = {"pactl", "set-sink-volume", "43", "-5%", NULL};
 static const char *shutdown[] = {"prompt", "Do you want to shutdown?", "shutdown -h now", NULL};
 static const char *lowpower[] = {"prompt", "Do you want to go into low power mode?", "zzz -S", NULL};
 //static const char *sleepcmd[] = {"prompt", "Do you want to go sleep?", "zzz", NULL};
