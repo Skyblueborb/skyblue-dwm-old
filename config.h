@@ -2,6 +2,8 @@
 
 /* appearance */
 static const unsigned int borderpx  = 2;        /* border pixel of windows */
+static unsigned int baralpha 	    = 0xd0;
+static unsigned int borderalpha     = OPAQUE;
 static const unsigned int gappx     = 3;        /* gaps between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const unsigned int minwsz    = 20;       /* Minimal heigt of a client for smfact */
@@ -42,14 +44,14 @@ static const unsigned int alphas[][3]      = {
 
 static const char *const autostart[] = {
 	"slstatus", NULL,
-	"kitty", "--name", "terminal", NULL,
-	"kitty", "--name", "cmus", "cmus", NULL,
-	"themereload", NULL,
+	"st", "-n", "terminal", NULL,
+	"st", "-n", "cmus", "-e", "pw-jack", "cmus", NULL,
+	//"themereload", NULL,
 	NULL /* terminate */
 };
 
 /* tagging */
-static const char *tags[] = { "", "", "", "", "", "" };
+static const char *tags[] = { "", "", "", "", "", "" }; //
 
 
 static const Rule rules[] = {
@@ -58,7 +60,7 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Ungoogled-chromium", "ungoogled-chromium", NULL, 1, 0, -1 },
+	{ "Chromium-browser-chromium", "chromium-browser-chromium", NULL, 1, 0, -1 },
 	{ "discord",  "discord", NULL, 2, 0, -1 },
 	{ "Terminator",  "terminator", NULL, 1 << 9, 0, -1 },
 	{ NULL, "terminal", NULL, 1 << 2, 0, -1},
@@ -118,14 +120,14 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-hp", "ungoogled,chromium,discord,firefox,kitty,vscodium,nomacs,steam,multimc,flameshot,netflix,mpv,zzz", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
-static const char *termcmd[]  = { "kitty", NULL };
+static const char *termcmd[]  = { "st", NULL };
 static const char *flameshot[] = {"flameshot", "gui", NULL};
 static const char *cmusplaypause[] = {"playerctl", "--player=cmus", "play-pause", NULL};
 static const char *cmusnext[] = {"playerctl", "--player=cmus", "next", NULL};
 static const char *cmusprevious[] = {"playerctl", "--player=cmus", "previous", NULL};
 static const char *betterlockscreen[] = {"betterlockscreen", "-l", NULL};
-static const char *volup [] = {"pactl", "set-sink-volume", "43", "+5%", NULL};
-static const char *voldown[] = {"pactl", "set-sink-volume", "43", "-5%", NULL};
+static const char *volup [] = {"pactl", "set-sink-volume", "50", "+5%", NULL};
+static const char *voldown[] = {"pactl", "set-sink-volume", "50", "-5%", NULL};
 static const char *shutdown[] = {"prompt", "Do you want to shutdown?", "shutdown -h now", NULL};
 static const char *lowpower[] = {"prompt", "Do you want to go into low power mode?", "zzz -S", NULL};
 //static const char *sleepcmd[] = {"prompt", "Do you want to go sleep?", "zzz", NULL};
